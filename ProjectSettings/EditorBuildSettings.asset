@@ -6,8 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/_Scenes/CentralHub.unity
+    guid: 334e3707e3ecd964891fcf14a85e01b4
+  - enabled: 1
+    path: Assets/_Scenes/MedievalPark.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/_Scenes/WildWestPark.unity
+    guid: 99ab5f80131720540a3eef8fd6431463
+  - enabled: 1
+    path: Assets/_Scenes/DinosaursPark.unity
+    guid: eed0a7949cf125248bbbec417f587453
+  - enabled: 1
+    path: Assets/_Scenes/PiratesPark.unity
+    guid: d210457c291c35e4fb73cc27fe2f48d0
+  - enabled: 1
+    path: Assets/_Scenes/OlympusPark.unity
+    guid: 2f0b4a6aa7b487648ac2960343245ba1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
