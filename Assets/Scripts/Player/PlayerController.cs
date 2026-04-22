@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject); // keep player across scenes
+        
         controller = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
