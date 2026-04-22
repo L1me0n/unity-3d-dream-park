@@ -43,6 +43,9 @@ public class HubManager : MonoBehaviour
                 }
                 Application.Quit();
                 break;
+            case "HubDoor":
+                SceneManager.LoadScene("CentralHub");
+                break;
         }
     }
 
