@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller; // instead of Rigidbody physics-based movement, we use CharacterController for more precise control
     private float verticalVelocity; // for gravity
     private float pitch; // up/down camera rotation
+    private bool movementEnabled = true; // can be disabled when mounting a horse
 
     private void Awake()
     {
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove()
     {
+        if (!movementEnabled)
+            return;
         float x = Input.GetAxis("Horizontal"); // A/D
         float z = Input.GetAxis("Vertical");   // W/S
 
@@ -65,5 +68,10 @@ public class PlayerController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
         cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+    }
+
+    public void SetMovementEnabled(bool enabled)
+    {
+        movementEnabled = enabled;
     }
 }

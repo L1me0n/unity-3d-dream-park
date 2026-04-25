@@ -8,8 +8,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject player; // reference to the player prefab
     [SerializeField] private CharacterController characterController; // reference to the player's CharacterController for teleporting
 
-    private int counter = 0; // to track how many players we can instantiate, should only be 1
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded; // listen for scene changes to reposition player
@@ -23,11 +21,6 @@ public class SpawnManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject); // keep spawn manager across scenes
-        if (counter < 1)
-        {
-            Instantiate(player, playerSpawn.position, playerSpawn.rotation); // create the player instance at the start
-            counter++;
-        }
     }
 
     private void Start()
@@ -37,10 +30,6 @@ public class SpawnManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "CentralHub")
-        {
-            player.SetActive(false); 
-        }
         MovePlayerToSpawn(); // reposition player at spawn point whenever a new scene loads
     }
 
