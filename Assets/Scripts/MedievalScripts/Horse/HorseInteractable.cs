@@ -2,12 +2,23 @@ using UnityEngine;
 
 public class HorseInteractable : MonoBehaviour, IInteractable
 {
+    [Header("References")]
+    [SerializeField] private HorseController horseController;
+
     [Header("Horse Settings")]
     [SerializeField] private Transform seatPoint;
     [SerializeField] private Transform standPoint;
 
     private bool isMounted = false;
     private GameObject mountedPlayer;
+
+    private void Awake()
+    {
+        if (horseController == null)
+        {
+            horseController = GetComponent<HorseController>();
+        }
+    }
 
     public string GetPromptText()
     {
@@ -24,10 +35,12 @@ public class HorseInteractable : MonoBehaviour, IInteractable
         if (isMounted)
         {
             DismountPlayer();
+            horseController.SetMounted(false);
         }
         else
         {
             MountPlayer(playerInteraction.gameObject);
+            horseController.SetMounted(true);
         }
         
         playerInteraction.ClearCurrentInteractable();
