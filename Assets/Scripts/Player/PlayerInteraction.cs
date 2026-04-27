@@ -4,6 +4,11 @@ public class PlayerInteraction : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private InteractionPromptUI interactionPromptUI;
+    [SerializeField] private PlayerMonologueUI playerMonologueUI;
+
+    [Header("Monologue Settings")]
+    [SerializeField] private string monologueMessage = 
+    "The key is probably in the castle. I have to get there";
 
     private IInteractable currentInteractable;
 
@@ -17,6 +22,15 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (playerMonologueUI == null)
+        {
+            playerMonologueUI = FindObjectOfType<PlayerMonologueUI>();
+        }
+        if (other.CompareTag("MonologueZone"))
+        {
+            playerMonologueUI.Show(monologueMessage);
+        }
+
         IInteractable interactable = other.GetComponentInParent<IInteractable>();
         if (interactionPromptUI == null)
         {
@@ -32,6 +46,15 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (playerMonologueUI == null)
+        {
+            playerMonologueUI = FindObjectOfType<PlayerMonologueUI>();
+        }
+        if (other.CompareTag("MonologueZone"))
+        {
+            playerMonologueUI.Hide();
+        }
+        
         IInteractable interactable = other.GetComponentInParent<IInteractable>();
         if (interactionPromptUI == null)
         {

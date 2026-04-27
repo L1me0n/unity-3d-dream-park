@@ -4,6 +4,7 @@ public class HorseInteractable : MonoBehaviour, IInteractable
 {
     [Header("Horse Settings")]
     [SerializeField] private Transform seatPoint;
+    [SerializeField] private Transform standPoint;
 
     private bool isMounted = false;
     private GameObject mountedPlayer;
@@ -22,10 +23,13 @@ public class HorseInteractable : MonoBehaviour, IInteractable
     {
         if (isMounted)
         {
-            return;
+            DismountPlayer();
         }
-
-        MountPlayer(playerInteraction.gameObject);
+        else
+        {
+            MountPlayer(playerInteraction.gameObject);
+        }
+        
         playerInteraction.ClearCurrentInteractable();
     }
 
@@ -54,5 +58,39 @@ public class HorseInteractable : MonoBehaviour, IInteractable
         {
             controller.enabled = true;
         }
+    }
+
+    private void DismountPlayer()
+    {
+        if (!isMounted || mountedPlayer == null)
+        {
+            return;
+        }
+
+        isMounted = false;
+
+        CharacterController controller = 
+            mountedPlayer.GetComponent<CharacterController>();
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
+
+        PlayerController playerController = 
+            mountedPlayer.GetComponent<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.SetMovementEnabled(true);
+        }
+        mountedPlayer.transform.SetParent(null);
+        mountedPlayer.transform.position = standPoint.position;
+        mountedPlayer.transform.rotation = standPoint.rotation;
+
+        if (controller != null)
+        {
+            controller.enabled = true;
+        }
+
+        mountedPlayer = null;
     }
 }
