@@ -11,6 +11,8 @@ public class HorseController : MonoBehaviour
 
     [Header("Grounding")]
     [SerializeField] private float gravity = -20f;
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
 
     private CharacterController controller;
     private float currentSpeed;
@@ -20,6 +22,7 @@ public class HorseController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -27,6 +30,7 @@ public class HorseController : MonoBehaviour
         if (!isMounted)
         {
             ApplyIdleGravity();
+            animator.SetFloat("Speed", 0f);
             return;
         }
 
@@ -51,6 +55,9 @@ public class HorseController : MonoBehaviour
 
         float speedChangeRate = Mathf.Abs(targetSpeed) > Mathf.Abs(currentSpeed) ? acceleration : deceleration;
         currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, speedChangeRate * Time.deltaTime);
+
+        float normalizedSpeed = GetNormalizedSpeed();
+        animator.SetFloat("Speed", normalizedSpeed);
 
         float turnAmount = horizontal;
 
@@ -92,6 +99,7 @@ public class HorseController : MonoBehaviour
         if (!isMounted)
         {
             currentSpeed = 0f;
+            animator.SetFloat("Speed", 0f);
         }
     }
 

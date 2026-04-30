@@ -4,10 +4,15 @@ public class HorseInteractable : MonoBehaviour, IInteractable
 {
     [Header("References")]
     [SerializeField] private HorseController horseController;
+    [SerializeField] private Camera mainCamera;
 
     [Header("Horse Settings")]
     [SerializeField] private Transform seatPoint;
     [SerializeField] private Transform standPoint;
+
+    [Header("Camera Settings")]
+    [SerializeField] private float startZ = -4.5f;
+    [SerializeField] private float newZ = -7f;
 
     private bool isMounted = false;
     private GameObject mountedPlayer;
@@ -17,6 +22,10 @@ public class HorseInteractable : MonoBehaviour, IInteractable
         if (horseController == null)
         {
             horseController = GetComponent<HorseController>();
+        }
+        if (mainCamera == null)
+        {
+            mainCamera = FindObjectOfType<Camera>();
         }
     }
 
@@ -51,6 +60,12 @@ public class HorseInteractable : MonoBehaviour, IInteractable
         mountedPlayer = player;
         isMounted = true;
 
+        if (mainCamera != null)
+        {
+            startZ = mainCamera.transform.localPosition.z;
+            mainCamera.transform.localPosition -= new Vector3(0f, 0f, startZ - newZ);
+        }
+
         CharacterController controller = player.GetComponent<CharacterController>();
         if (controller != null)
         {
@@ -81,6 +96,12 @@ public class HorseInteractable : MonoBehaviour, IInteractable
         }
 
         isMounted = false;
+
+        if (mainCamera != null)
+        {
+
+            mainCamera.transform.localPosition += new Vector3(0f, 0f, startZ - newZ);
+        }
 
         CharacterController controller = 
             mountedPlayer.GetComponent<CharacterController>();

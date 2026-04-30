@@ -201,6 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   interactionPromptUI: {fileID: 0}
+  playerMonologueUI: {fileID: 0}
+  monologueMessage: The key is probably in the castle. I have to get there
 --- !u!1 &4156880919778772759
 GameObject:
   m_ObjectHideFlags: 0
