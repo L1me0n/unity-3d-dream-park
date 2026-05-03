@@ -796,8 +796,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HorseInteractable
   horseController: {fileID: 1767153559445409821}
+  mainCamera: {fileID: 0}
   seatPoint: {fileID: 3476680161433659551}
   standPoint: {fileID: 1730509099265745172}
+  startZ: -4.5
+  newZ: -7
 --- !u!114 &1767153559445409821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,6 +819,7 @@ MonoBehaviour:
   deceleration: 12
   turnSpeed: 120
   gravity: -20
+  animator: {fileID: 8290476585632281990}
 --- !u!143 &9079631075123034329
 CharacterController:
   m_ObjectHideFlags: 0
@@ -835,7 +839,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 12.69
-  m_Radius: 2.7
+  m_Radius: 1.83
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -878,7 +882,7 @@ Animator:
   m_GameObject: {fileID: 4508233032142110479}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc61c265f6f1df2419086873d4f0fb0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1012,7 +1016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6248572368684698047}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0.7900013}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
@@ -1241,7 +1245,7 @@ Transform:
   m_GameObject: {fileID: 7081263902634019276}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.42000002, z: -0.0129983425}
+  m_LocalPosition: {x: 0, y: 0.42000002, z: -0.01299834}
   m_LocalScale: {x: 0.6, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1659,7 +1663,7 @@ Transform:
   m_GameObject: {fileID: 8331656494904417599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 1.93}
+  m_LocalPosition: {x: 0, y: 1.77, z: 1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
